@@ -18,8 +18,6 @@ module.exports = {
       tabWidth: 2,
       trailingComma: 'all',
       printWidth: 80,
-      bracketSpacing: true,
-      arrowParens: 'avoid',
     }]
   },
   overrides: [

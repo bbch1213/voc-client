@@ -4,9 +4,9 @@ import axios from 'axios';
 
 Vue.use(Vuex);
 
-const resourceHost = 'http://localhost:8081';
+const resourceHost = "http://localhost:8081";
 
-export default new Vuex.Store({
+export const AccountVuex = new Vuex.Store({
     state: {
         xAuthToken: ''
     },
@@ -32,7 +32,8 @@ export default new Vuex.Store({
                     if(response.status === 200){
                         context.commit("login", response.data.token);
                     }
-                }).catch(() => alert('아이디나 비밀번호를 확인해주세요.'));
+            }).catch(() => alert('아이디나 비밀번호를 확인해주세요.'));
         }
     },
+    modules: {},
 });
