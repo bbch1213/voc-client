@@ -55,14 +55,22 @@ export default {
         customerId: this.customerId,
         content: this.content,
       };
-      VocVuex.dispatch('savePage', Data).then(() => {
-        if (VocVuex.getters.getRegister) {
-          alert('등록 완료');
-          this.$router.push({ name: 'List' });
-        } else {
-          alert('등록 실패. 관리자에게 문의하세요.');
-        }
-      });
+      if (Data.title === '') {
+        alert('제목을 입력하세요.');
+      } else if (Data.content === '') {
+        alert('내용을 입력하세요.');
+      } else if (Data.customerId === '') {
+        alert('고객 ID 를 입력하세요.');
+      } else {
+        VocVuex.dispatch('savePage', Data).then(() => {
+          if (VocVuex.getters.getRegister) {
+            alert('등록 완료');
+            this.$router.push({ name: 'List' });
+          } else {
+            alert('등록 실패. 관리자에게 문의하세요.');
+          }
+        });
+      }
     },
   },
 };

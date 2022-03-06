@@ -1,14 +1,18 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+  <div>
+    <div>
+      <router-link :to="{ name: 'Login' }">상담사 전용 페이지</router-link>
+    </div>
+    <div>
+      <router-link :to="{ name: 'List' }">고객 전용 페이지</router-link>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: 'Home',
-  components: {},
 };
 </script>
+
+<style scoped></style>

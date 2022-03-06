@@ -51,15 +51,20 @@ export default {
         vocId: this.$route.params.id,
         content: this.content,
       };
-      console.log(Data);
-      ReplyVuex.dispatch('savePage', Data).then(() => {
-        if (ReplyVuex.getters.getRegister) {
-          alert('등록 완료');
-          this.$router.go(-1);
-        } else {
-          alert('등록 실패. 관리자에게 문의하세요.');
-        }
-      });
+      if (Data.title === '') {
+        alert('제목을 입력하세요.');
+      } else if (Data.content === '') {
+        alert('내용을 입력하세요.');
+      } else {
+        ReplyVuex.dispatch('savePage', Data).then(() => {
+          if (ReplyVuex.getters.getRegister) {
+            alert('등록 완료');
+            this.$router.go(-1);
+          } else {
+            alert('등록 실패. 관리자에게 문의하세요.');
+          }
+        });
+      }
     },
   },
 };

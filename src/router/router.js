@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Home from '@/views/Home.vue';
 
 Vue.use(VueRouter);
 
@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/logout',
     name: 'Logout',
-    componet: () => {
+    component: () => {
       this.$store.commit('logout');
     },
   },
@@ -41,6 +41,11 @@ const routes = [
     path: '/reply/:id/register',
     name: 'ReplyRegister',
     component: () => import('@/views/reply/reply-register.vue'),
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: () => import('@/views/NotFound.vue'),
   },
 ];
 
