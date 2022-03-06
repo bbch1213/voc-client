@@ -1,8 +1,7 @@
 # voc-client
-IDE : Vscode
-구성 환경 : Vue.js (Vue 2.X 사용)
-node version : v16.13.0
-사용한 기술 스택 : Vue-Router, Vuex, Axios
+1. IDE : Vscode
+2. 구성 환경 : Vue.js (Vue 2.X 사용), node version : v16.13.0
+4. 사용한 기술 스택 : Vue-Router, Vuex, Axios
 
 ## 첫 실행 시
 ```
