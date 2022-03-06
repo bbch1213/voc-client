@@ -4,35 +4,39 @@ import axios from 'axios';
 
 Vue.use(Vuex);
 
-const resourceHost = 'http://localhost:8081';
-
 export default new Vuex.Store({
-    state: {
-        xAuthToken: ''
+  state: {
+    authenticated: false,
+  },
+  getters: {
+    getAuthenticated: state => {
+      return state.authenticated;
     },
-    getters: {
-        getToken : state => {
-            return state.xAuthToken;
-        }
+  },
+  mutations: {
+    login: (state, payload) => {
+      state.authenticated = true;
+      console.log(payload);
+      sessionStorage.setItem('X-AUTH-TOKEN', payload.token);
+      sessionStorage.setItem('userId', payload.id);
     },
-    mutations: {
-        login : (state, payload) => {
-            state.xAuthToken = payload;
-            sessionStorage.setItem('X-AUTH-TOKEN', payload);
-        },
-        logout : (state) => {
-            state.xAuthToken = null;
-            sessionStorage.removeItem('X-AUTH-TOKEN');
-        }
+    logout: state => {
+      state.xAuthToken = false;
+      sessionStorage.removeItem('X-AUTH-TOKEN');
+      sessionStorage.removeItem('userId');
     },
-    actions: {
-        getTokenToServer : (context, payload) => {
-            return axios.post(resourceHost + '/api/login', payload)
-                .then((response) => {
-                    if(response.status === 200){
-                        context.commit("login", response.data.token);
-                    }
-                }).catch(() => alert('아이디나 비밀번호를 확인해주세요.'));
-        }
+  },
+  actions: {
+    getTokenToServer: (context, payload) => {
+      return axios
+        .post('/api/login', payload)
+        .then(response => {
+          context.commit('login', response.data);
+        })
+        .catch(() => {});
     },
+    logout: context => {
+      return context.commit('logout');
+    },
+  },
 });

@@ -13,12 +13,34 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/account/account.vue'),
+    component: () => import('@/views/account/account.vue'),
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    componet: () => {
+      this.$store.commit('logout');
+    },
   },
   {
     path: '/list',
     name: 'List',
-    component: () => import('../views/voc/voc-list.vue'),
+    component: () => import('@/views/voc/voc-list.vue'),
+  },
+  {
+    path: '/page/:id',
+    name: 'Page',
+    component: () => import('@/views/voc/voc-page.vue'),
+  },
+  {
+    path: '/page/vocRegister',
+    name: 'VocRegister',
+    component: () => import('@/views/voc/voc-register.vue'),
+  },
+  {
+    path: '/reply/:id/register',
+    name: 'ReplyRegister',
+    component: () => import('@/views/reply/reply-register.vue'),
   },
 ];
 
