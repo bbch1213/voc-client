@@ -21,7 +21,7 @@ export default {
     };
   },
   mounted() {
-    if (sessionStorage.getItem('X-AUTH-TOKEN')) {
+    if (sessionStorage.getItem('Authorization')) {
       this.$router.push({ name: 'List' });
     }
   },

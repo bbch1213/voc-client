@@ -43,7 +43,7 @@ export const VocVuex = new Vuex.Store({
   actions: {
     getListToServerByCustomerId: (context, payload) => {
       return axios
-        .get('/api/voc/findByCustomerId/' + payload + '?sort=createdAt,desc')
+        .get('/api/voc/customers/' + payload + '?sort=createdAt,desc')
         .then(response => {
           context.commit('list', response.data);
         })
@@ -51,9 +51,21 @@ export const VocVuex = new Vuex.Store({
     },
     getListToServerByAll: context => {
       return axios
-        .get('/api/user/findAll?sort=createdAt,desc', {
+        .get('/api/voc/pages?sort=createdAt,desc', {
           headers: {
-            Authorization: sessionStorage.getItem('X-AUTH-TOKEN'),
+            Authorization: sessionStorage.getItem('Authorization'),
+          },
+        })
+        .then(response => {
+          context.commit('list', response.data);
+        })
+        .catch(() => alert('데이터 조회 실패!'));
+    },
+    getListToServerByStatus: context => {
+      return axios
+        .get('/api/user/voc/no-managed?sort=createdAt,desc', {
+          headers: {
+            Authorization: sessionStorage.getItem('Authorization'),
           },
         })
         .then(response => {
@@ -62,20 +74,20 @@ export const VocVuex = new Vuex.Store({
         .catch(() => alert('데이터 조회 실패!'));
     },
     getPage: (context, payload) => {
-      return axios.get('/api/voc/findOne/' + payload).then(response => {
+      return axios.get('/api/voc/' + payload).then(response => {
         context.commit('page', response);
       });
     },
     savePage: async (context, payload) => {
-      return await axios.post('/api/voc/register', payload).then(response => {
+      return await axios.post('/api/voc/add', payload).then(response => {
         context.commit('register', response.data.code);
       });
     },
     changeStatus: (context, payload) => {
       return axios
-        .put('/api/user/voc/' + payload + '/select', payload, {
+        .put('/api/user/voc/' + payload, payload, {
           headers: {
-            Authorization: sessionStorage.getItem('X-AUTH-TOKEN'),
+            Authorization: sessionStorage.getItem('Authorization'),
           },
         })
         .then(response => {

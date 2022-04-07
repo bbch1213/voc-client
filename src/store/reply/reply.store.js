@@ -39,7 +39,7 @@ export const ReplyVuex = new Vuex.Store({
       return await axios
         .post('/api/reply/register', payload, {
           headers: {
-            Authorization: sessionStorage.getItem('X-AUTH-TOKEN'),
+            Authorization: sessionStorage.getItem('Authorization'),
           },
         })
         .then(response => {

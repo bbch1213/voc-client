@@ -17,12 +17,12 @@ export default new Vuex.Store({
     login: (state, payload) => {
       state.authenticated = true;
       console.log(payload);
-      sessionStorage.setItem('X-AUTH-TOKEN', payload.token);
-      sessionStorage.setItem('userId', payload.id);
+      sessionStorage.setItem('Authorization', payload.token);
+      sessionStorage.setItem('userId', payload.userId);
     },
     logout: state => {
       state.xAuthToken = false;
-      sessionStorage.removeItem('X-AUTH-TOKEN');
+      sessionStorage.removeItem('Authorization');
       sessionStorage.removeItem('userId');
     },
   },

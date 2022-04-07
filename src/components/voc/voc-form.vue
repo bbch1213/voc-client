@@ -15,7 +15,7 @@
     <div v-if="authorization">
       <button
         type="button"
-        v-if="status === 'NO_MANAGER'"
+        v-if="status === 'NO_MANAGER' || status === 'COMPLETE'"
         @click.prevent="changeStatus()"
       >
         나에게 할당하기
@@ -44,7 +44,7 @@ export default {
       content: '',
       createdAt: '',
       user: [],
-      authorization: sessionStorage.getItem('X-AUTH-TOKEN'),
+      authorization: sessionStorage.getItem('Authorization'),
       authorizationId: sessionStorage.getItem('userId'),
     };
   },
