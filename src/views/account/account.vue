@@ -31,6 +31,10 @@ export default {
         userId: this.userId,
         password: this.password,
       };
+      if (this.userId === '' || this.password === '') {
+        alert('아이디나 비밀번호를 입력해주세요.');
+        return;
+      }
       await this.$store.dispatch('getTokenToServer', userData).then(() => {
         if (this.$store.getters.getAuthenticated === false) {
           alert('아이디나 비밀번호를 확인해주세요.');

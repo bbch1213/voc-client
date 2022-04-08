@@ -15,10 +15,13 @@
     <div v-if="authorization">
       <button
         type="button"
-        v-if="status === 'NO_MANAGER' || status === 'COMPLETE'"
+        v-if="status === 'NO_MANAGER'"
         @click.prevent="changeStatus()"
       >
         나에게 할당하기
+      </button>
+      <button type="button" v-else-if="status === 'COMPLETE'" disabled>
+        이미 답변 완료된 VOC 입니다.
       </button>
       <button
         type="button"

@@ -16,14 +16,15 @@ export default new Vuex.Store({
   mutations: {
     login: (state, payload) => {
       state.authenticated = true;
-      console.log(payload);
       sessionStorage.setItem('Authorization', payload.token);
       sessionStorage.setItem('userId', payload.userId);
+      sessionStorage.setItem('role', payload.role);
     },
     logout: state => {
-      state.xAuthToken = false;
+      state.authenticated = false;
       sessionStorage.removeItem('Authorization');
       sessionStorage.removeItem('userId');
+      sessionStorage.removeItem('role');
     },
   },
   actions: {

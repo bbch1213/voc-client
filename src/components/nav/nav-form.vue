@@ -18,14 +18,14 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
             <template #button-content>
-              <em>사용자</em>
+              <em>{{ userId }}</em>
             </template>
             <b-dropdown-item @click.prevent="logout()" v-if="authorization"
               >로그아웃</b-dropdown-item
             >
             <b-dropdown-item
               @click.prevent="goToVocRegister()"
-              v-if="!authorization"
+              v-if="role === 'ROLE_USER'"
               >문의 남기기</b-dropdown-item
             >
           </b-nav-item-dropdown>
@@ -44,6 +44,8 @@ export default {
   data() {
     return {
       authorization: false,
+      userId: sessionStorage.getItem('userId'),
+      role: sessionStorage.getItem('role'),
     };
   },
   mounted() {

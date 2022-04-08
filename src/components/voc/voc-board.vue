@@ -18,9 +18,6 @@
           <b-td scope="row">{{ index + 1 }}</b-td>
           <b-td hidden scope="row">{{ item.id }}</b-td>
           <b-td>
-            <!-- <router-link :to="{ name: 'Page', params: { id: item.id } }">{{
-              item.title
-            }}</router-link> -->
             <a href="javascript:void(0);" @click="goToPage(item.id)">{{
               item.title
             }}</a>

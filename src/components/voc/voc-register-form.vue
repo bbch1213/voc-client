@@ -1,10 +1,6 @@
 <template>
   <form>
     <div>
-      <label for="customerId">고객 ID: </label>
-      <input v-model="customerId" />
-    </div>
-    <div>
       <label for="title">제목: </label>
       <input v-model="title" />
     </div>
@@ -23,7 +19,6 @@ export default {
     return {
       id: '',
       title: '',
-      customerId: '',
       content: '',
       createdAt: '',
     };
@@ -52,15 +47,12 @@ export default {
     save() {
       const Data = {
         title: this.title,
-        customerId: this.customerId,
         content: this.content,
       };
       if (Data.title === '') {
         alert('제목을 입력하세요.');
       } else if (Data.content === '') {
         alert('내용을 입력하세요.');
-      } else if (Data.customerId === '') {
-        alert('고객 ID 를 입력하세요.');
       } else {
         VocVuex.dispatch('savePage', Data).then(() => {
           if (VocVuex.getters.getRegister) {
