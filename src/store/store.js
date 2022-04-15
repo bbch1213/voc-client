@@ -18,7 +18,14 @@ export default new Vuex.Store({
       state.authenticated = true;
       sessionStorage.setItem('Authorization', payload.token);
       sessionStorage.setItem('userId', payload.userId);
-      sessionStorage.setItem('role', payload.role);
+      payload.role.some(element => {
+        console.log(element.roleType);
+        if (element.roleType === 'ROLE_ADMIN') {
+          sessionStorage.setItem('role', 'ROLE_ADMIN');
+          return true;
+        }
+        sessionStorage.setItem('role', 'ROLE_USER');
+      });
     },
     logout: state => {
       state.authenticated = false;

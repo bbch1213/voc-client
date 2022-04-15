@@ -1,7 +1,7 @@
 <template>
   <form>
     <div>
-      <label for="customerId">고객 ID: {{ customerId }}</label>
+      <label for="customerId">고객 ID: {{ user.userId }}</label>
     </div>
     <div>
       <label for="customerId">제목: {{ title }}</label>
@@ -12,7 +12,7 @@
     <div>
       <textarea id="textarea" v-model="content" disabled></textarea>
     </div>
-    <div v-if="authorization">
+    <div v-if="authorizationRole === 'ROLE_ADMIN'">
       <button
         type="button"
         v-if="status === 'NO_MANAGER'"
@@ -26,7 +26,7 @@
       <button
         type="button"
         @click.prevent="toReply()"
-        v-else-if="authorizationId === user.userId"
+        v-else-if="authorizationId === admin.userId"
       >
         답글 달기
       </button>
@@ -42,13 +42,14 @@ export default {
   data() {
     return {
       title: '',
-      customerId: '',
+      user: [],
       status: '',
       content: '',
       createdAt: '',
-      user: [],
+      admin: [],
       authorization: sessionStorage.getItem('Authorization'),
       authorizationId: sessionStorage.getItem('userId'),
+      authorizationRole: sessionStorage.getItem('role'),
     };
   },
   created() {
@@ -56,10 +57,10 @@ export default {
       const page = VocVuex.getters.getPage;
       this.title = page.title;
       this.status = page.vocStatus;
-      this.customerId = page.customerId;
+      this.user = page.createdBy;
       this.content = page.content;
       this.createdAt = page.createdAt;
-      this.user = page.user;
+      this.admin = page.admin;
     });
   },
   computed: {

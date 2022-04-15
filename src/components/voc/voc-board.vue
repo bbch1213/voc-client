@@ -22,7 +22,7 @@
               item.title
             }}</a>
           </b-td>
-          <b-td scope="row">{{ item.customerId }}</b-td>
+          <b-td scope="row">{{ item.createdBy.userId }}</b-td>
           <b-td scope="row">{{ item.vocStatus }}</b-td>
           <b-td scope="row">{{ item.createdAt | timeFilter }}</b-td>
         </b-tr>
@@ -45,7 +45,7 @@ export default {
           id: '',
           title: '',
           vocStatus: '',
-          customerId: '',
+          createdBy: [],
           createdAt: '',
         },
       ],

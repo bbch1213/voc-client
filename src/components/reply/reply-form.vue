@@ -2,7 +2,7 @@
   <div v-if="replyList !== null">
     <div v-for="item in replyList" v-bind:key="item.id">
       <div>
-        <label for="userId">답변자 ID: {{ item.user.userId }}</label>
+        <label for="userId">답변자 ID: {{ item.createdBy.userId }}</label>
       </div>
       <div>
         <label for="title">제목: {{ item.title }}</label>
